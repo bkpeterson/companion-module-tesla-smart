@@ -68,7 +68,7 @@ class instance extends InstanceBase {
 
 		this.updateStatus(InstanceStatus.Connecting)
 
-		this.receivedBuffer = []
+		//this.receivedBuffer = []
 
 		if (this.config.host) {
 			this.socket = new TCPHelper(this.config.host, this.config.port)
@@ -88,13 +88,13 @@ class instance extends InstanceBase {
 
 			this.socket.on('data', (chunk) => {
 				const data = Buffer.from(chunk)
-				this.receivedBuffer.push(data)
-				if(this.receivedBuffer.length >= 6) {
-					this.log('debug', 'Received ' + this.receivedBuffer.toString('hex'))
+				//this.receivedBuffer.push(data)
+				//if(this.receivedBuffer.length >= 6) {
+					this.log('debug', 'Received ' + data.toString('hex'))
 
-					this.#processData(this.receivedBuffer)
-					this.receivedBuffer = []
-				}
+					this.#processData(data)
+					//this.receivedBuffer = []
+				//}
 			})
 		}
 	}
